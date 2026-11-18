@@ -1,0 +1,582 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f5f6fb">
+    <title>Student Hub — Management System v2.1</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+<div class="shell">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+
+        <div class="brand">
+            <div class="brand-mark">SH</div>
+            <div class="brand-info">
+                <b>Student Hub</b>
+                <small>MANAGEMENT SYSTEM</small>
+            </div>
+            <button class="icon-btn sidebar-close" id="sidebarClose"
+                    aria-label="Close menu">×</button>
+        </div>
+
+        <div class="nav-label">WORKSPACE</div>
+
+        <nav class="navigation">
+            <button class="nav active" data-view="dashboard">
+                <span class="nav-icon">⌂</span>
+                <span>Overview</span>
+            </button>
+
+            <button class="nav" data-view="students">
+                <span class="nav-icon">▤</span>
+                <span>Students</span>
+            </button>
+
+            <button class="nav" data-view="analytics">
+                <span class="nav-icon">▥</span>
+                <span>Analytics</span>
+            </button>
+        </nav>
+
+        <div class="nav-label">DATABASE</div>
+
+        <nav class="navigation">
+            <button class="nav" id="backupBtn">
+                <span class="nav-icon">⇧</span>
+                <span>Backup database</span>
+            </button>
+
+            <button class="nav" id="restoreBtn">
+                <span class="nav-icon">↻</span>
+                <span>Restore database</span>
+            </button>
+
+            <button class="nav" id="exportBtn">
+                <span class="nav-icon">↓</span>
+                <span>Export CSV</span>
+            </button>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="connection-card">
+                <span class="status-dot"></span>
+                <div>
+                    <b>Database connected</b>
+                    <small>Powered by Bash Shell</small>
+                </div>
+            </div>
+
+            <div class="sidebar-version">STUDENT HUB v2.1</div>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+
+            <div class="topbar-left">
+                <button class="icon-btn menu-toggle" id="menuToggle"
+                        aria-label="Open menu">☰</button>
+
+                <div>
+                    <div class="eyebrow">
+                        STUDENT MANAGEMENT / <span id="crumb">OVERVIEW</span>
+                    </div>
+                    <h1 id="pageTitle">Overview</h1>
+                </div>
+            </div>
+
+            <div class="top-actions">
+                <span class="local-pill">
+                    <span class="status-dot"></span>
+                    LOCAL INSTANCE
+                </span>
+
+                <button class="icon-btn theme-toggle" id="themeToggle"
+                        aria-label="Toggle theme">☾</button>
+
+                <div class="avatar">SH</div>
+            </div>
+        </header>
+
+        <!-- DASHBOARD -->
+        <section id="dashboardView">
+
+            <div class="welcome">
+                <div class="welcome-content">
+                    <div class="eyebrow light">
+                        STUDENT HUB WEB EDITION · 2.1
+                    </div>
+
+                    <h2>Manage your campus,<br>one record at a time.</h2>
+
+                    <p>Your student database, organized and accessible in one place.</p>
+
+                    <button class="welcome-btn" id="addFromDash">
+                        + Add a student
+                    </button>
+                </div>
+
+                <div class="welcome-art">
+                    <div class="art-circle circle-one"></div>
+                    <div class="art-circle circle-two"></div>
+                    <div class="art-symbol">✦</div>
+                </div>
+            </div>
+
+<!-- BASH ENGINE MONITOR -->
+<section class="panel engine-panel">
+
+    <div class="engine-heading">
+        <div>
+            <div class="eyebrow">CORE TECHNOLOGY</div>
+            <h2>Bash Engine Monitor</h2>
+            <p class="muted">
+                Database operations powered by GNU Bash Shell Scripting.
+            </p>
+        </div>
+
+        <span class="engine-badge">
+            <span class="engine-dot"></span>
+            ENGINE ACTIVE
+        </span>
+    </div>
+
+    <div class="engine-grid">
+
+        <div class="engine-info">
+            <div class="engine-icon">⌘</div>
+            <div>
+                <strong>GNU Bash Shell</strong>
+                <small>Primary database engine</small>
+            </div>
+        </div>
+
+        <div class="engine-info">
+            <div class="engine-icon">▤</div>
+            <div>
+                <strong>students.txt</strong>
+                <small>Pipe-separated data storage</small>
+            </div>
+        </div>
+
+        <div class="engine-info">
+            <div class="engine-icon">⚙</div>
+            <div>
+                <strong>Bash + AWK</strong>
+                <small>Validation and integrity</small>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="engine-terminal">
+        <div class="terminal-heading">
+            <span>COMMAND REFERENCE</span>
+            <span>GNU BASH</span>
+        </div>
+
+        <div class="terminal-line">
+            <span>$</span> ./backend.sh list
+            <small>View student records</small>
+        </div>
+
+        <div class="terminal-line">
+            <span>$</span> ./backend.sh stats
+            <small>Database statistics</small>
+        </div>
+
+        <div class="terminal-line">
+            <span>$</span> ./backend.sh integrity
+            <small>Check database integrity</small>
+        </div>
+
+        <div class="terminal-line">
+            <span>$</span> ./backend.sh backup
+            <small>Create database backup</small>
+        </div>
+    </div>
+
+    <div class="engine-footer">
+        <span>Browser UI → Python HTTP Bridge → Bash Backend → TXT Database</span>
+    </div>
+
+</section>
+
+            <!-- STATISTICS -->
+            <div class="stat-grid">
+
+                <article class="stat-card">
+                    <div class="stat-top">
+                        <span>Total students</span>
+                        <span class="stat-icon purple">♙</span>
+                    </div>
+                    <strong id="totalStudents">—</strong>
+                    <small>Registered student records</small>
+                </article>
+
+                <article class="stat-card">
+                    <div class="stat-top">
+                        <span>Total courses</span>
+                        <span class="stat-icon blue">▤</span>
+                    </div>
+                    <strong id="totalCourses">—</strong>
+                    <small>Unique course names</small>
+                </article>
+
+                <article class="stat-card">
+                    <div class="stat-top">
+                        <span>Average age</span>
+                        <span class="stat-icon green">◷</span>
+                    </div>
+                    <strong id="averageAge">—</strong>
+                    <small>Across all students</small>
+                </article>
+
+            </div>
+
+            <!-- DATABASE HEALTH -->
+            <section class="panel health-panel">
+
+                <div class="health-header">
+                    <div>
+                        <div class="eyebrow">SYSTEM MONITOR</div>
+                        <h2>Database Health</h2>
+                        <p class="muted">
+                            Monitor database integrity and record consistency.
+                        </p>
+                    </div>
+
+                    <button class="primary" id="runIntegrityBtn" type="button">
+                        ↻ Run Integrity Check
+                    </button>
+                </div>
+
+                <div class="health-status-row">
+                    <div>
+                        <span class="health-status-dot" id="healthDot"></span>
+                        <strong id="healthStatus">Checking database...</strong>
+                    </div>
+
+                    <span class="health-label" id="healthMessage">
+                        Please wait
+                    </span>
+                </div>
+
+                <div class="health-grid">
+
+                    <div class="health-metric">
+                        <small>RECORDS CHECKED</small>
+                        <strong id="healthChecked">—</strong>
+                    </div>
+
+                    <div class="health-metric">
+                        <small>INTEGRITY ISSUES</small>
+                        <strong id="healthIssueCount">—</strong>
+                    </div>
+
+                </div>
+
+                <div class="health-issues" id="healthIssues">
+                    <p class="muted">
+                        Integrity report will appear here.
+                    </p>
+                </div>
+
+            </section>
+            <!-- ACTIVITY HISTORY - V2.2 -->
+<section class="panel activity-panel">
+    <div class="activity-header">
+        <div>
+            <div class="eyebrow">AUDIT TRAIL</div>
+            <h2>Recent Activity</h2>
+            <p class="muted">
+                A record of database operations performed in Student Hub.
+            </p>
+        </div>
+
+        <button class="secondary" id="refreshActivityBtn" type="button">
+            ↻ Refresh
+        </button>
+    </div>
+
+    <div class="activity-summary">
+        <span>
+            <strong id="activityTotal">—</strong> events recorded
+        </span>
+        <span class="activity-live">
+            <span class="activity-live-dot"></span>
+            LIVE LOG
+        </span>
+    </div>
+
+    <div class="activity-list" id="activityList" aria-live="polite">
+        <p class="empty">Loading activity history...</p>
+    </div>
+</section>
+
+            <!-- RECENT STUDENTS -->
+            <div class="section-head">
+                <div>
+                    <div class="eyebrow">DATABASE</div>
+                    <h2>Student directory</h2>
+                    <p class="muted">Your recently registered students.</p>
+                </div>
+
+                <button class="primary" id="viewAllStudents">
+                    View all students →
+                </button>
+            </div>
+
+            <div class="panel">
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>STUDENT</th>
+                                <th>STUDENT ID</th>
+                                <th>AGE</th>
+                                <th>COURSE</th>
+                                <th>ACTIONS</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recentRows"></tbody>
+                    </table>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- STUDENTS VIEW -->
+        <section id="studentsView" class="hidden">
+
+            <div class="section-head">
+                <div>
+                    <div class="eyebrow">DIRECTORY</div>
+                    <h2>Student records</h2>
+                    <p class="muted">
+                        Search, filter and manage your student database.
+                    </p>
+                </div>
+
+                <button class="primary" id="addBtn">
+                    + Add student
+                </button>
+            </div>
+
+            <div class="toolbar">
+
+                <div class="search-box">
+                    <span>⌕</span>
+                    <input
+                        id="searchInput"
+                        type="search"
+                        placeholder="Search by name or student ID..."
+                    >
+                </div>
+
+                <select id="courseFilter">
+                    <option value="">All courses</option>
+                </select>
+
+                <select id="sortFilter">
+                    <option value="asc">ID: Low to high</option>
+                    <option value="desc">ID: High to low</option>
+                    <option value="name">Name: A to Z</option>
+                </select>
+
+                <button class="secondary" id="clearSearch">
+                    Clear filters
+                </button>
+            </div>
+
+            <div class="directory-info">
+                <span id="resultCount">Student records</span>
+                <span>Sorted by Student ID</span>
+            </div>
+
+            <div class="panel">
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>STUDENT</th>
+                                <th>STUDENT ID</th>
+                                <th>AGE</th>
+                                <th>COURSE</th>
+                                <th>ACTIONS</th>
+                            </tr>
+                        </thead>
+                        <tbody id="studentRows"></tbody>
+                    </table>
+                </div>
+
+                <div class="pagination" id="pagination">
+                    <span id="pageInfo">Showing students</span>
+
+                    <div class="pagination-actions">
+                        <button class="secondary" id="prevPage">
+                            ← Previous
+                        </button>
+
+                        <button class="secondary" id="nextPage">
+                            Next →
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ANALYTICS VIEW -->
+        <section id="analyticsView" class="hidden">
+
+            <div class="section-head">
+                <div>
+                    <div class="eyebrow">INSIGHTS</div>
+                    <h2>Student analytics</h2>
+                    <p class="muted">
+                        A breakdown of your current student database.
+                    </p>
+                </div>
+            </div>
+
+            <div class="stat-grid analytics-stats">
+
+                <article class="stat-card">
+                    <div class="stat-top">
+                        <span>Total students</span>
+                        <span class="stat-icon purple">♙</span>
+                    </div>
+                    <strong id="analyticsTotal">—</strong>
+                    <small>Registered records</small>
+                </article>
+
+                <article class="stat-card">
+                    <div class="stat-top">
+                        <span>Average age</span>
+                        <span class="stat-icon green">◷</span>
+                    </div>
+                    <strong id="analyticsAverage">—</strong>
+                    <small>Student age average</small>
+                </article>
+
+            </div>
+
+            <div class="analytics-layout">
+
+                <div class="panel analytics-panel">
+                    <div class="panel-heading">
+                        <div>
+                            <div class="eyebrow">DISTRIBUTION</div>
+                            <h3>Students by course</h3>
+                        </div>
+                    </div>
+
+                    <div id="courseBars">
+                        <p class="empty">Loading analytics...</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+            <span>Student Hub v2.1 · Management Console</span>
+            <span>Built with Bash · Python · JavaScript</span>
+        </footer>
+
+    </main>
+</div>
+
+<!-- MOBILE SIDEBAR OVERLAY -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<!-- ADD / EDIT STUDENT MODAL -->
+<div class="modal-backdrop hidden" id="studentModal">
+
+    <form class="modal" id="studentForm">
+
+        <div class="modal-head">
+            <div>
+                <div class="eyebrow">STUDENT RECORD</div>
+                <h2 id="modalTitle">Add student</h2>
+                <p class="muted">
+                    Enter the student information below.
+                </p>
+            </div>
+
+            <button type="button" class="icon-btn" id="closeModal"
+                    aria-label="Close modal">×</button>
+        </div>
+
+        <label>
+            Student ID
+            <input name="id" required inputmode="numeric"
+                   placeholder="e.g. 105">
+        </label>
+
+        <label>
+            Full name
+            <input name="name" required placeholder="Enter full name">
+        </label>
+
+        <div class="form-row">
+            <label>
+                Age
+                <input name="age" type="number" min="16" max="100"
+                       required placeholder="19">
+            </label>
+
+            <label>
+                Course
+                <input name="course" required placeholder="BTech CSE">
+            </label>
+        </div>
+
+        <div class="modal-actions">
+            <button type="button" class="secondary" id="cancelModal">
+                Cancel
+            </button>
+            <button class="primary" type="submit">Save student</button>
+        </div>
+
+    </form>
+</div>
+
+<!-- STUDENT PROFILE MODAL -->
+<div class="modal-backdrop hidden" id="profileModal">
+
+    <div class="modal profile-modal">
+        <div class="modal-head">
+            <div>
+                <div class="eyebrow">STUDENT PROFILE</div>
+                <h2>Student details</h2>
+            </div>
+
+            <button class="icon-btn" id="closeProfile"
+                    aria-label="Close profile">×</button>
+        </div>
+
+        <div id="profileContent"></div>
+    </div>
+
+</div>
+
+<!-- TOAST NOTIFICATION -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="/app.js"></script>
+
+</body>
+</html>

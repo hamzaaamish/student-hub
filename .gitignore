@@ -1,0 +1,16 @@
+# Student data and logs
+students.txt
+students_backup.txt
+activity.log
+*.pre_restore
+
+# Python
+__pycache__/
+*.pyc
+venv/
+.env
+
+# OS and editor
+.DS_Store
+Thumbs.db
+.vscode/
