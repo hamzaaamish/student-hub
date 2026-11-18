@@ -1,0 +1,12 @@
+103|Benzema|18|CYBER
+102|Modric|20|DS
+101|Ronaldo|18|CSE
+104|Ramos|19|AIML
+105|Pepe|20|MBBS
+106|Bale|19|CSE
+107|Kroos|20|AIML
+108|Carvajal|21|CYBER
+109|Marcelo|19|MBBS
+110|Casemiro|20|CSE
+111|Isco|20|DS
+112|Navas|21|CYBER
