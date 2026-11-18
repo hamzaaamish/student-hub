@@ -1,1 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Student Hub — Management Console</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-mark">SH</div><div><b>Student Hub</b><small>MANAGEMENT CONSOLE</small></div></div>
+    <div class="nav-label">WORKSPACE</div>
+    <button class="nav active" data-view="dashboard">◫ <span>Overview</span></button>
+    <button class="nav" data-view="students">▤ <span>Students</span></button>
+    <button class="nav" data-view="analytics">▥ <span>Analytics</span></button>
+    <div class="nav-label">DATABASE</div>
+    <button class="nav" id="backupBtn">⇧ <span>Backup database</span></button>
+    <button class="nav" id="restoreBtn">↻ <span>Restore database</span></button>
+    <div class="side-bottom"><span class="status-dot"></span> Local database connected<small>Powered by Bash Shell</small></div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><div><div class="eyebrow">STUDENT MANAGEMENT / <span id="crumb">OVERVIEW</span></div><h1 id="pageTitle">Overview</h1></div><div class="top-actions"><span class="local-pill">● LOCAL INSTANCE</span><div class="avatar">SH</div></div></header>
+    <section id="dashboardView">
+      <div class="welcome"><div><div class="eyebrow light">STUDENT HUB WEB EDITION</div><h2>Manage your campus,<br>one record at a time.</h2><p>A simple, reliable student database powered by Bash.</p></div><div class="welcome-art">✦</div></div>
+      <div class="stat-grid">
+        <article class="stat-card"><div class="stat-top"><span>Total students</span><span class="stat-icon purple">♙</span></div><strong id="totalStudents">—</strong><small>Registered records</small></article>
+        <article class="stat-card"><div class="stat-top"><span>Courses</span><span class="stat-icon blue">▤</span></div><strong id="totalCourses">—</strong><small>Unique course names</small></article>
+        <article class="stat-card"><div class="stat-top"><span>Average age</span><span class="stat-icon green">◷</span></div><strong id="averageAge">—</strong><small>Across all students</small></article>
+      </div>
+      <div class="section-head"><div><div class="eyebrow">DATABASE</div><h2>Recently added students</h2></div><button class="primary" id="addFromDash">＋ Add student</button></div>
+      <div class="panel"><div class="table-wrap"><table><thead><tr><th>STUDENT</th><th>STUDENT ID</th><th>AGE</th><th>COURSE</th><th></th></tr></thead><tbody id="recentRows"></tbody></table></div></div>
+    </section>
+    <section id="studentsView" class="hidden">
+      <div class="section-head"><div><div class="eyebrow">DIRECTORY</div><h2>Student records</h2><p class="muted">Search, filter and manage your student database.</p></div><button class="primary" id="addBtn">＋ Add student</button></div>
+      <div class="toolbar"><input id="searchInput" placeholder="Search by name or student ID…"><select id="courseFilter"><option value="">All courses</option></select><button class="secondary" id="clearSearch">Clear</button></div>
+      <div class="panel"><div class="table-wrap"><table><thead><tr><th>STUDENT</th><th>STUDENT ID</th><th>AGE</th><th>COURSE</th><th>ACTIONS</th></tr></thead><tbody id="studentRows"></tbody></table></div></div>
+    </section>
+    <section id="analyticsView" class="hidden">
+      <div class="section-head"><div><div class="eyebrow">INSIGHTS</div><h2>Student analytics</h2><p class="muted">A breakdown of your current student records.</p></div></div>
+      <div class="stat-grid"><article class="stat-card"><span class="muted">Total students</span><strong id="analyticsTotal">—</strong></article><article class="stat-card"><span class="muted">Average age</span><strong id="analyticsAverage">—</strong></article></div>
+      <div class="panel analytics-panel"><h3>Students by course</h3><div id="courseBars"></div></div>
+    </section>
+    <footer>Student Hub v1.0 · Local browser edition <span>Backend operations executed by Bash</span></footer>
+  </main>
+</div>
+<div class="modal-backdrop hidden" id="studentModal"><form class="modal" id="studentForm"><div class="modal-head"><div><div class="eyebrow">STUDENT RECORD</div><h2 id="modalTitle">Add student</h2></div><button type="button" class="icon-btn" id="closeModal">×</button></div><label>Student ID<input name="id" required inputmode="numeric" placeholder="e.g. 104"></label><label>Full name<input name="name" required placeholder="Student name"></label><div class="form-row"><label>Age<input name="age" type="number" min="16" max="100" required placeholder="19"></label><label>Course<input name="course" required placeholder="Btech CSE"></label></div><div class="modal-actions"><button type="button" class="secondary" id="cancelModal">Cancel</button><button class="primary" type="submit">Save student</button></div></form></div>
+<div class="toast" id="toast"></div>
+<script src="/app.js"></script>
+</body></html>
 
