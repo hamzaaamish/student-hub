@@ -1,132 +1,185 @@
-<<<<<<< HEAD
 # Student Hub — Student Database Management System
 
-A Bash-powered Student Database Management System with a modern browser-based dashboard. It allows users to manage student records through a clean web interface while keeping Bash as the core database engine.
+A Bash-powered Student Database Management System with a browser-based dashboard, developed as a Linux Programming academic project.
+
+Student Hub demonstrates how Bash Shell Scripting can be used as the core data-processing engine while a lightweight Python HTTP server connects it to a local web interface.
 
 ## Features
 
-- **Add Students:** Register new students with ID, name, age and course.
-- **View Students:** Display all student records.
-- **Search Students:** Search by student ID or name.
-- **Update Records:** Modify existing student information.
-- **Delete Records:** Remove student records.
-- **Course Filtering:** Filter students based on their course.
-- **ID-Based Sorting:** Arrange student records in ascending order of Student ID.
-- **Dashboard:** View student statistics and course information.
-- **Backup and Restore:** Create database backups and restore saved records.
-- **Input Validation:** Prevent invalid entries and duplicate student IDs.
+- **Student CRUD:** Add, view, update, and delete student records.
+- **Search:** Find records by student ID or name.
+- **Sorting and filtering:** Sort records and filter students by course.
+- **Dashboard and analytics:** View student statistics and course information.
+- **Database integrity checker:** Detect malformed records, missing fields, invalid IDs, duplicate IDs, invalid names, ages, and courses.
+- **Backup and restore:** Create database backups and preserve a pre-restore copy before restoring.
+- **Activity audit trail:** Record timestamped operations and their status without storing student names in the log.
+- **CSV export:** Export student records from the web interface.
+- **Browser interface:** Student directory, profiles, modals, responsive layout, and light/dark themes.
 
 ## Technology Stack
 
-| Technology | Purpose |
+| Technology | Role |
 |---|---|
-| Bash Shell Scripting | Core database operations |
-| Python | Local HTTP server and backend bridge |
-| HTML5 | Webpage structure |
-| CSS3 | Dashboard styling |
-| JavaScript | Frontend interactions |
-| Text File Database | Student record storage |
+| Bash Shell Scripting | Core database operations and record processing |
+| Python 3 | Local HTTP server and bridge to the Bash backend |
+| HTML5 | Frontend structure |
+| CSS3 | Styling and responsive layout |
+| JavaScript | Frontend interactions and API communication |
+| Pipe-separated text file | Student record storage |
+
+## Architecture
+
+```text
+Browser UI
+(HTML, CSS, JavaScript)
+        |
+        v
+Python HTTP Bridge
+(server.py)
+        |
+        v
+Bash Backend
+(backend.sh)
+        |
+        v
+Text File Database
+(students.txt)
+```
+
+**Architecture note:** Bash is the core database engine. Python acts as a local HTTP bridge and invokes Bash commands; it is not a separate database engine.
 
 ## Project Structure
 
 ```text
-StudentDatabase/
-│
+student-hub/
+├── .gitignore
+├── README.md
+├── backend.sh
 ├── main.sh
 ├── main_v1_backup.sh
-├── backend.sh
 ├── server.py
-├── students.txt
-├── students_backup.txt
-├── README.md
-│
 └── static/
     ├── index.html
     ├── style.css
     └── app.js
 ```
 
-## Installation and Setup
+Runtime data files such as `students.txt`, `students_backup.txt`, and `activity.log` are created locally and excluded from the public repository.
 
-### Requirements
+## Requirements
 
-- Windows, Linux or macOS
-- Git Bash or a Bash-compatible shell
 - Python 3
-- Visual Studio Code (recommended)
+- Bash-compatible shell (Git Bash on Windows, or Bash on Linux/macOS)
+- A modern web browser
 
-### Run the Web Application
+## Setup and Run
 
-1. Clone or download the project.
-2. Open the project directory in VS Code.
-3. Open the terminal.
-4. Start the local server:
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/hamzaaamish/student-hub.git
+cd student-hub
+```
+
+### 2. Start the local web server
 
 ```bash
 python server.py
 ```
 
-5. Open your browser and visit:
+### 3. Open the application
+
+Visit:
 
 ```text
 http://127.0.0.1:8000
 ```
 
-### Run the Terminal Application
-
-Open Git Bash in the project directory and execute:
+### 4. Run the terminal interface
 
 ```bash
-./main.sh
+bash main.sh
 ```
 
-## Database Format
+### 5. Run backend actions
 
-Student records are stored in `students.txt` using a pipe-separated format:
+Examples:
+
+```bash
+bash backend.sh list
+bash backend.sh stats
+bash backend.sh integrity
+bash backend.sh backup
+bash backend.sh activity 20
+```
+
+## Data Format
+
+Student records are stored as pipe-separated fields:
 
 ```text
-101|Ronaldo|18|CSE
-102|Modric|20|DS
-103|Benzema|18|CYBER
+StudentID|Name|Age|Course
+101|Sample Student|20|CSE
+102|Another Student|19|ECE
 ```
 
-Each record contains:
+The database stores four fields per record: student ID, name, age, and course. The example records above are illustrative only.
 
-- Student ID
-- Student Name
-- Age
-- Course
+## Integrity Checks and Audit Trail
 
-## How It Works
+The integrity checker validates record structure and required fields, checks IDs and duplicates, and validates student names, ages, and courses.
 
-The browser frontend communicates with the Python HTTP server. The Python server invokes Bash scripts to perform database operations. Bash processes the records stored in the text file and returns the results to the server, which sends responses back to the frontend.
+The activity log records the timestamp, operation, record ID, details, and status. It is designed not to store student names. During restore, the current database is copied to a pre-restore file before the backup is applied.
 
-## Security and Usage
+## Verified Development Results
 
-This project is designed for local demonstration and educational use. The development server binds to `127.0.0.1` and is not configured for public internet deployment or multi-user production access.
+During development:
+
+- The integrity API returned a **Healthy** status.
+- **12 records** were checked with **0 integrity issues** in that test.
+- ADD, UPDATE, and DELETE operations were recorded successfully.
+- The activity API returned the latest audit records.
+
+These are development test observations, not performance benchmarks.
+
+## Limitations
+
+- Intended for local educational demonstration.
+- Uses text-file storage rather than a relational database.
+- Does not include user authentication or role-based access.
+- Not designed for concurrent multi-user production use.
+- The local server binds to the loopback address and is not configured for public deployment.
+
+## Future Scope
+
+- Authentication and role-based access.
+- Integration with a relational database.
+- Improved reporting and analytics.
+- Stronger access controls and support for concurrent users.
+- Optional deployment for controlled remote access.
 
 ## Learning Outcomes
 
-- Practical implementation of Bash scripting.
-- File handling and text processing in Linux.
-- Use of shell commands such as `awk`, `sort`, `cp` and `touch`.
-- Input validation and conditional statements.
-- Integration of Bash with Python.
-- Basic client-server communication.
-- Development of a browser-based user interface.
+- Bash Shell Scripting and Linux command-line workflows.
+- File handling and text processing with tools such as AWK.
+- CRUD operations and input validation.
+- Backup, restore, and audit logging.
+- Data integrity checks.
+- Integration of Bash scripts with a Python HTTP server.
+- Frontend development and client-server communication.
 
 ## Project Information
 
-**Project:** Student Hub — Student Database Management System  
-**Subject:** Linux Programming  
-**Core Language:** Bash  
-**Interface:** Web-based Dashboard  
-**Database:** File-based Storage
+| Field | Details |
+|---|---|
+| Project | Student Hub |
+| Subject | Linux Programming |
+| Department | Computer Science & Engineering |
+| Core language | Bash Shell Scripting |
+| Interface | Local browser-based dashboard |
+| Storage | Pipe-separated text file |
+| Version | 2.2 |
 
 ---
 
-Developed as an academic project to demonstrate Linux shell programming and integration with a modern web interface.
-=======
-# student-hub
-Student Database Management System using Bash Shell Scripting
->>>>>>> 1adadfd98ceca88bd48590fc0a2fd6d146d73fe1
+Developed as an academic project to demonstrate Linux programming, shell scripting, file handling, and integration with a browser-based interface.
